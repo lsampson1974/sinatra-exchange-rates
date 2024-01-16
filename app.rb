@@ -41,9 +41,9 @@ get("/:from_currency/:to_currency") do
 
     exchange_conversion_url = "http://api.exchangerate.host/convert?access_key=#{exchange_rate_key}&from=#{@from_currency}&to=#{@to_currency}&amount=1"
 
-    extracted_data = JSON.parse(HTTP.get(exchange_conversion_url), object_class: OpenStruct)
+    extracted_data = JSON.parse(HTTP.get(exchange_conversion_url))
 
-    @convert_value = extracted_data.result
+    @convert_value = extracted_data["result"]
 
     erb(:conversion_results)
     
